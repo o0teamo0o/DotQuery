@@ -1,0 +1,67 @@
+<view class='body'>
+  <view class="wrap flex flex-v">
+    <view class='search-out-layout'>
+      <view class='search-layout' animation="{{showSearchAnimationData}}">
+        <image src='../../images/icon_search.png' />
+        <input placeholder='输入网点名称名或拼音查询' onFocus="onSearchInterListener" onInput="onSearchInputListener" confirm-type="search" />
+      </view>
+      <view class='btn-cancel' onTap='onCloseSearcyLayout'>取消</view>
+    </view>
+    <view class='line searchTop' />
+    <view class='main flex-1'>
+      <view class='search-city-layout'>
+        <view class="hotcity-common" id='locat'>距离您最近的网点</view>
+        <view class='line' />
+        <view class="lately-store-layout" onTap='jumpNavigationPage' data-info='{{latelyStoreInfo}}'>
+          <view class='top-layout'>
+            <text class='name'>{{latelyStoreInfo.name}}</text>
+          </view>
+          <view class='bottom-layout'>
+            <view class='left-layout'>{{latelyStoreInfo.address}}</view>
+            <view class='right-layout'>
+              <image src='../../images/icon_location_map_store.png' mode='widthFix' />
+              <text class='distance'>{{latelyStoreInfo.distance}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='line' />
+      </view>
+      <view class='scroll-layout store-scroll-mark'>
+        <scroll-view class='left-layout' scroll-y>
+          <block a:for="{{storeCityList}}" a:key="forkey">
+            <view class="lately-store-layout" catchtap='jumpNavigationPage' data-info='{{item}}'>
+              <view class='top-layout'>
+                <text class='name'>{{item.name}}</text>
+              </view>
+              <view class='bottom-layout'>
+                <view class='left-layout'>{{item.address}}</view>
+                <view class='right-layout'>
+                  <image src='../../images/icon_location_map_store.png' mode='widthFix' />
+                  <text class='distance'>{{item.distance}}</text>
+                </view>
+              </view>
+            </view>
+            <view class='line' />
+          </block>
+        </scroll-view>
+      </view>
+      <view a:if="{{isShowSearchLayout}}" class='popup-search-layout' style='height:{{popupSearchHeight}}px; top: {{searchLayoutTop}}px'>
+        <block a:for="{{searchResultList}}" a:key="forkey">
+          <view class="lately-store-layout" catchtap='jumpNavigationPage' data-info='{{item}}'>
+            <view class='top-layout'>
+              <text class='name'>{{item.name}}</text>
+            </view>
+            <view class='bottom-layout'>
+              <view class='left-layout'>{{item.address}}</view>
+              <view class='right-layout'>
+                <image src='../../images/icon_location_map_store.png' mode='widthFix' />
+                <text class='distance'>{{item.distance}}</text>
+              </view>
+            </view>
+          </view>
+          <view class='line' />
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
